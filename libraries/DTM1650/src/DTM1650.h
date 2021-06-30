@@ -96,7 +96,8 @@ public:
 	void write_num(float num);
 	void write_num(uint16_t num);
 	void write_num(uint16_t num, uint8_t position);
-	void write_time(uint16_t minute, uint16_t second);
+	void write_time(uint16_t minute, uint8_t second);
+	void write_longtime(uint16_t minute, uint8_t second);
 
 };
 

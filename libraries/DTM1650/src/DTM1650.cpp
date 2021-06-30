@@ -142,7 +142,7 @@ void DTM1650::write_num(uint16_t num) {
 	send_digit(DTM1650_Digit_Table[digit], 0);
 }
 
-void DTM1650::write_time(uint16_t minute, uint16_t second) {
+void DTM1650::write_time(uint16_t minute, uint8_t second) {
 	uint8_t digit;
 	digit = second % 10;
 	send_digit(DTM1650_Digit_Table[digit], 3);
@@ -150,6 +150,36 @@ void DTM1650::write_time(uint16_t minute, uint16_t second) {
 	digit = second % 10;
 	send_digit(DTM1650_Digit_Table[digit], 2);
 	set_dot(1, true);
+	digit = minute % 10;
+	send_digit(DTM1650_Digit_Table[digit], 1);
+	minute = minute / 10;
+	digit = minute % 10;
+	send_digit(DTM1650_Digit_Table[digit], 0);
+}
+
+void DTM1650::write_longtime(uint16_t minute, uint8_t second) {
+	uint8_t digit;
+	if (minute > 99)
+	{
+		set_dot(1, false);
+		set_dot(2, true);
+		second = second / 10;
+		digit = second % 10;
+		send_digit(DTM1650_Digit_Table[digit], 3);
+		digit = minute % 10;
+		send_digit(DTM1650_Digit_Table[digit], 2);
+		minute = minute / 10;
+	}
+	else
+	{
+		set_dot(1, true);
+		set_dot(2, false);
+		digit = second % 10;
+		send_digit(DTM1650_Digit_Table[digit], 3);
+		second = second / 10;
+		digit = second % 10;
+		send_digit(DTM1650_Digit_Table[digit], 2);
+	}
 	digit = minute % 10;
 	send_digit(DTM1650_Digit_Table[digit], 1);
 	minute = minute / 10;
