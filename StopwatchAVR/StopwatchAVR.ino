@@ -12,6 +12,7 @@
 
 #define BUS_ID 2 // Адрес (Таймер) 
 #define PIN_TIMER_ON 13 // Вывод сигнала включения
+#define PIN_REDE A1
 
 #include <Wire.h>
 #include <GyverButton.h>
@@ -25,7 +26,7 @@ GButton button_reset(BTN_PIN_RESET);
 DTM1650 display;
 
 // Работа с шиной
-Modbus bus(BUS_ID, 0, 0);
+Modbus bus(BUS_ID, 0, PIN_REDE);
 int8_t state = 0;
 uint16_t temp[2] = { 0, 0 };
 
