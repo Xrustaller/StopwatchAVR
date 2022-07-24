@@ -11,8 +11,8 @@
 #define BEEP_PIN 9  // Пин пьезо (при выборе 9 пина, 10 - недоступен из-за шим)
 
 #define BUS_ID 2 // Адрес (Таймер) 
+#define PIN_REDE A2
 #define PIN_TIMER_ON 13 // Вывод сигнала включения
-#define PIN_REDE A1
 
 #include <Wire.h>
 #include <GyverButton.h>
